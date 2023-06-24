@@ -11,13 +11,12 @@ function createProject(name) {
 }
 
 function switchProject(index) {
-    projects[currentIndex] = currentProject;
+    projects[currentIndex] = currentProject;    //save project
     currentProject = projects[index];
     currentIndex = index;
 }
     
 function addToProject(task) {
-    console.log("test");
     currentProject.addTask(task);
 }
 
@@ -30,3 +29,13 @@ function printTasks() {
         console.log(task.name);
     });
 }
+
+addToProject("One");
+addToProject("Two");
+console.log(currentProject.taskList[1].changePriority());
+console.log(currentProject.taskList[1].changePriority());
+console.log(currentProject.taskList[1].changePriority());
+console.log(currentProject.taskList[1].changePriority());
+console.log(currentProject.taskList[1].changePriority());
+console.log(currentProject.taskList[1].changePriority());
+console.log(currentProject.taskList[1].changePriority());
