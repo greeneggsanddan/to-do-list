@@ -6,13 +6,13 @@ export default class Project {
         this.taskList = [];
     }
 
-    get taskList() {
-        return this._taskList;
-    }
+    // get taskList() {
+    //     return this._taskList;
+    // }
 
-    set taskList(tasks) {
-        this._taskList = tasks;
-    }
+    // set taskList(tasks) {
+    //     this._taskList = tasks;
+    // }
 
 
     addTask(task) {
