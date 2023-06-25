@@ -6,10 +6,28 @@
     <title>To-Do List</title>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@500;600;700;800;900&display=swap');
+    </style>
 </head>
 <body>
-    <div class="header"></div>
-    <div class="sidebar"></div>
+    <div class="header">
+        <div class="logo">TODO</div>
+    </div>
+    <div class="sidebar">
+        <div class="projects">
+            <h1 class="sidebar-title">Projects</h1>
+            <button class="sidebar-btn">
+                <div class="dot"></div>
+                <h3>Inbox</h3>
+            </button>
+            <button class="sidebar-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 16 16"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+                <h3>New project</h3>
+            </button>
+        </div>
+    </div>
     <div class="main"></div>
 </body>
 </html>
