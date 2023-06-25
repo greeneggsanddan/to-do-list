@@ -1,7 +1,7 @@
 import Project from "./project";
 
 const projects = [];
-let currentProject = new Project("Default");
+let currentProject = new Project("Inbox");
 let currentIndex = 0;
 projects.push(currentProject);
 
@@ -39,3 +39,4 @@ console.log(currentProject.taskList[1].changePriority());
 console.log(currentProject.taskList[1].changePriority());
 console.log(currentProject.taskList[1].changePriority());
 console.log(currentProject.taskList[1].changePriority());
+printTasks();
