@@ -56,7 +56,7 @@ button {
 
 body {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 270px 1fr;
     grid-template-rows: min-content 1fr;
     min-height: 100vh;
 }
@@ -110,4 +110,12 @@ body {
     background-color: white;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    /* padding:
+    margin:
+    width:  */
+}
+
+.main-title {
+    font-weight: bold;
+
 }
