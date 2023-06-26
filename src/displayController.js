@@ -5,6 +5,9 @@ export function displayProject(project) {
     const projectDiv = document.createElement("div");
     const projectTitle = document.createElement("h2");
 
+    projectDiv.classList.add("project-div");
+    projectTitle.classList.add("project-title");
+
     projectTitle.textContent = project.name;
     
     projectDiv.appendChild(projectTitle);
@@ -15,6 +18,7 @@ export function displayProject(project) {
 
 function createTasks(project) {
     const tasks = document.createElement("div");
+    tasks.classList.add("tasks-container");
 
     project.taskList.forEach(task => {
         const taskDiv = document.createElement("div");
