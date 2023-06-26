@@ -1,9 +1,10 @@
 import Project from "./project";
+import { displayProject } from "./displayController";
 
 const projects = [];
-let currentProject = new Project("Inbox");
-let currentIndex = 0;
-projects.push(currentProject);
+let inbox = new Project("Inbox");
+let activeProject = 0;
+projects.push(inbox);
 
 function createProject(name) {
     const newProject = new Project(name);
@@ -11,32 +12,32 @@ function createProject(name) {
 }
 
 function switchProject(index) {
-    projects[currentIndex] = currentProject;    //save project
-    currentProject = projects[index];
-    currentIndex = index;
+    activeProject = index;
 }
     
 function addToProject(task) {
-    currentProject.addTask(task);
+    projects[activeProject].addTask(task);
 }
 
 function removeFromProject(index) {
-    currentProject.removeTask(index);
+    projects[activeProject].removeTask(index);
 }
 
 function printTasks() {
-    currentProject.taskList.forEach(task => {
+    projects[activeProject].taskList.forEach(task => {
         console.log(task.name);
     });
 }
 
+const mainDiv = document.querySelector(".main");
+
 addToProject("One");
 addToProject("Two");
-console.log(currentProject.taskList[1].changePriority());
-console.log(currentProject.taskList[1].changePriority());
-console.log(currentProject.taskList[1].changePriority());
-console.log(currentProject.taskList[1].changePriority());
-console.log(currentProject.taskList[1].changePriority());
-console.log(currentProject.taskList[1].changePriority());
-console.log(currentProject.taskList[1].changePriority());
+addToProject("Three");
+createProject("Test");
+switchProject(1);
+addToProject("A");
+addToProject("B");
+addToProject("C");
+mainDiv.appendChild(displayProject(projects[activeProject]));
 printTasks();
