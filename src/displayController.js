@@ -1,5 +1,6 @@
-import { addToProject } from "./index";
+import { addToProject } from ".";
 import Task from "./task";
+import { getActiveProject } from ".";
 
 export function displayProjectList(projects) {
     const sidebarDiv = document.createElement("div");
@@ -103,10 +104,15 @@ export function createForm() {
     input.setAttribute("type", "text");
     input.setAttribute("maxlength", "50");
     input.setAttribute("placeholder", "Task name...");
-    submitBtn.setAttribute("type", "submit");
 
     cancelBtn.textContent = "Cancel";
     submitBtn.textContent = "Add task";
+
+    input.addEventListener("keypress", e => {
+        if (e.key === "Enter") addTask(e);
+    });
+
+    submitBtn.addEventListener("click", addTask);
 
     addTaskForm.appendChild(input);
     addTaskForm.appendChild(cancelBtn);
@@ -126,8 +132,17 @@ function openForm() {
     input.focus();
 }
 
-function addTask() {
-    const task = new Task(document.querySelector(".add-task-input"));
+export function updateProjectDisplay() {
+    const mainDiv = document.querySelector(".main");
+    const project = getActiveProject();
 
+    mainDiv.innerHTML = "";
+    mainDiv.appendChild(displayProject(project));
+}
+
+function addTask(event) {
+    event.preventDefault();
+    const task = document.querySelector(".add-task-input").value;
     addToProject(task);
+    updateProjectDisplay();
 }

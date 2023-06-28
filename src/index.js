@@ -1,5 +1,5 @@
 import Project from "./project";
-import { displayProject, displayProjectList, createForm } from "./displayController";
+import { displayProject, displayProjectList, updateProjectDisplay } from "./displayController";
 
 const projects = [];
 let inbox = new Project("Inbox");
@@ -15,12 +15,16 @@ function switchProject(index) {
     activeProject = index;
 }
     
-function addToProject(task) {
+export function addToProject(task) {
     projects[activeProject].addTask(task);
 }
 
 function removeFromProject(index) {
     projects[activeProject].removeTask(index);
+}
+
+export function getActiveProject() {
+    return projects[activeProject];
 }
 
 const mainDiv = document.querySelector(".main");
@@ -37,4 +41,3 @@ addToProject("Tomatoes");
 sidebar.appendChild(displayProjectList(projects));
 mainDiv.appendChild(displayProject(projects[activeProject]));
 const project = document.querySelector(".project-container");
-// project.appendChild(createForm());
