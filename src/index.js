@@ -1,5 +1,5 @@
 import Project from "./project";
-import { displayProject, displayProjectList } from "./displayController";
+import { displayProject, displayProjectList, createForm } from "./displayController";
 
 const projects = [];
 let inbox = new Project("Inbox");
@@ -42,4 +42,6 @@ addToProject("Lettuce");
 addToProject("Tomatoes");
 sidebar.appendChild(displayProjectList(projects));
 mainDiv.appendChild(displayProject(projects[activeProject]));
+const project = document.querySelector(".project-container");
+project.appendChild(createForm());
 printTasks();

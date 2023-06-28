@@ -1,8 +1,6 @@
-import Project from "./project";
-import Task from "./task";
-
 export function displayProjectList(projects) {
     const sidebarDiv = document.createElement("div");
+
     sidebarDiv.classList.add("project-list");
     
     projects.forEach(project => {
@@ -21,28 +19,9 @@ export function displayProjectList(projects) {
         sidebarDiv.appendChild(projectBtn);
     });
 
-    sidebarDiv.appendChild(createNewProjectBtn());
+    sidebarDiv.appendChild(createAddBtn("sidebar-btn", "New project"));
 
     return sidebarDiv;
-}
-
-function createNewProjectBtn() {
-    const button = document.createElement("button");
-    const addSymbol = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    const buttonText = document.createElement("p");
-
-    button.classList.add("sidebar-btn");
-    
-    addSymbol.setAttribute("viewBox", "4 4 16 16");
-    path.setAttribute("d", "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
-    buttonText.textContent = "New project";
-
-    addSymbol.appendChild(path);
-    button.appendChild(addSymbol);
-    button.appendChild(buttonText);
-
-    return button;
 }
 
 export function displayProject(project) {
@@ -62,6 +41,7 @@ export function displayProject(project) {
 
 function createTasks(project) {
     const tasks = document.createElement("div");
+
     tasks.classList.add("tasks-container");
 
     project.taskList.forEach(task => {
@@ -80,5 +60,52 @@ function createTasks(project) {
         tasks.appendChild(taskDiv);
     });
 
+    tasks.appendChild(createAddBtn("add-task-btn", "Add task"));
+
     return tasks;
+}
+
+function createAddBtn(className, text) {
+    const button = document.createElement("button");
+    const addSymbol = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    const buttonText = document.createElement("p");
+
+    button.classList.add(className);
+    
+    addSymbol.setAttribute("viewBox", "4 4 16 16");
+    path.setAttribute("d", "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
+    buttonText.textContent = text;
+
+    addSymbol.appendChild(path);
+    button.appendChild(addSymbol);
+    button.appendChild(buttonText);
+
+    return button;
+}
+
+export function createForm() {
+    const addTaskForm = document.createElement("form");
+    const input = document.createElement("input");
+    const cancelBtn = document.createElement("button");
+    const submitBtn = document.createElement("button");
+
+    addTaskForm.classList.add("add-task-form")
+    input.classList.add("add-task-input");
+    cancelBtn.classList.add("cancel-btn");
+    submitBtn.classList.add("submit-btn");
+
+    input.setAttribute("type", "text");
+    input.setAttribute("maxlength", "50");
+    input.setAttribute("placeholder", "Task name...");
+    submitBtn.setAttribute("type", "submit");
+
+    cancelBtn.textContent = "Cancel";
+    submitBtn.textContent = "Add task";
+
+    addTaskForm.appendChild(input);
+    addTaskForm.appendChild(cancelBtn);
+    addTaskForm.appendChild(submitBtn);
+
+    return addTaskForm;
 }
