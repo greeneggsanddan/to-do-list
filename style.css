@@ -152,6 +152,10 @@ body {
     margin-left: 1.5px;
 }
 
+.hidden {
+    display: none;
+}
+
 .main svg {
     width: 18px;
 }
@@ -160,6 +164,7 @@ body {
     border: 1px solid rgb(230, 230, 230);
     padding: 16px;
     border-radius: 16px;
+    margin-top: 12px;
 }
 
 .add-task-input {
