@@ -1,32 +1,23 @@
-import Task from "./task";
 import Project from "./project";
 
 const projects = [];
-let currentProject = new Project("Default");
-let currentIndex = 0;
-projects.push(currentProject);
+let inbox = new Project("Inbox");
+let activeProject = 0;
+projects.push(inbox);
 
-function createProject(name) {
+export function createProject(name) {
     const newProject = new Project(name);
     projects.push(newProject);
 }
 
-function switchProject(index) {
-    projects[currentIndex] = currentProject;
-    currentProject = projects[index];
-    currentIndex = index;
+export function switchProject(index) {
+    activeProject = index;
 }
     
-function addToProject(task) {
-    currentProject.addTask(task);
+export function addToProject(task) {
+    projects[activeProject].addTask(task);
 }
 
-function removeFromProject(index) {
-    currentProject.removeTask(index);
-}
-
-function printTasks() {
-    currentProject.taskList.forEach(task => {
-        console.log(task.name);
-    });
+export function removeFromProject(index) {
+    projects[activeProject].removeTask(index);
 }

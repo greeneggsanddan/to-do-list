@@ -23,12 +23,6 @@ function removeFromProject(index) {
     projects[activeProject].removeTask(index);
 }
 
-function printTasks() {
-    projects[activeProject].taskList.forEach(task => {
-        console.log(task.name);
-    });
-}
-
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");
 
@@ -43,5 +37,4 @@ addToProject("Tomatoes");
 sidebar.appendChild(displayProjectList(projects));
 mainDiv.appendChild(displayProject(projects[activeProject]));
 const project = document.querySelector(".project-container");
-project.appendChild(createForm());
-printTasks();
+// project.appendChild(createForm());

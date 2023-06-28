@@ -1,3 +1,6 @@
+import { addToProject } from "./index";
+import Task from "./task";
+
 export function displayProjectList(projects) {
     const sidebarDiv = document.createElement("div");
 
@@ -81,6 +84,8 @@ function createAddBtn(className, text) {
     button.appendChild(addSymbol);
     button.appendChild(buttonText);
 
+    button.addEventListener("click", openForm);
+
     return button;
 }
 
@@ -108,4 +113,21 @@ export function createForm() {
     addTaskForm.appendChild(submitBtn);
 
     return addTaskForm;
+}
+
+function openForm() {
+    const addTaskBtn = document.querySelector(".add-task-btn");
+    const project = document.querySelector(".project-container");
+    
+    addTaskBtn.classList.add("hidden");
+    project.appendChild(createForm());
+
+    const input = document.querySelector(".add-task-input");
+    input.focus();
+}
+
+function addTask() {
+    const task = new Task(document.querySelector(".add-task-input"));
+
+    addToProject(task);
 }
