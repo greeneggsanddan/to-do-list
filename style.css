@@ -143,3 +143,53 @@ body {
     width: 18px;
     border-radius: 50%;
 }
+
+.add-task-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    margin-left: 1.5px;
+}
+
+.main svg {
+    width: 18px;
+}
+
+.add-task-form {
+    border: 1px solid rgb(230, 230, 230);
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.add-task-input {
+    font-size: 1rem;
+    padding: 4px;
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+.add-task-input:focus {
+    outline: none;
+}
+
+.cancel-btn,
+.submit-btn {
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: .875rem;
+}
+
+.cancel-btn {
+    background-color: lightgrey;
+    color: black;
+}
+
+.submit-btn {
+    background-color: var(--header-color);
+    margin-left: 8px;
+}
