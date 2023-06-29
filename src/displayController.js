@@ -33,8 +33,15 @@ export function updateSidebar() {
         sidebarDiv.appendChild(projectBtn);
     });
 
-    sidebarDiv.appendChild(createAddBtn("sidebar-btn", "New project"));
+    const newProjectBtn = createAddBtn("sidebar-btn", "New project");
+    newProjectBtn.addEventListener("click", addProject);
+
+    sidebarDiv.appendChild(newProjectBtn);
     sidebar.appendChild(sidebarDiv);
+}
+
+function addProject() {
+    
 }
 
 export function updateProject() {
@@ -75,10 +82,13 @@ function createTasks(project) {
         tasks.appendChild(taskDiv);
     });
 
-    tasks.appendChild(createAddBtn("add-task-btn", "Add task"));
+    const addTaskBtn = createAddBtn("add-task-btn", "Add task");
+    addTaskBtn.addEventListener("click", openForm);
+    tasks.appendChild(addTaskBtn);
 
     return tasks;
 }
+
 
 function createAddBtn(className, text) {
     const button = document.createElement("button");
@@ -95,8 +105,6 @@ function createAddBtn(className, text) {
     addSymbol.appendChild(path);
     button.appendChild(addSymbol);
     button.appendChild(buttonText);
-
-    button.addEventListener("click", openForm);
 
     return button;
 }
