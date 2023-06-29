@@ -142,6 +142,8 @@ function addTask() {
 }
 
 function openForm() {
+    updateSidebar();
+
     const addTaskBtn = document.querySelector(".add-task-btn");
     const project = document.querySelector(".project-container");
     
@@ -153,13 +155,17 @@ function openForm() {
 }
 
 function openInput() {
+    updateProject();
+
     const newProjectBtn = document.querySelector(".new-project-btn");
     const projectList = document.querySelector(".project-list");
+    const inputDiv = document.createElement("div");
     const input = document.createElement("input");
     const submitBtn = document.createElement("button");
     const cancelBtn = document.createElement("button");
 
     newProjectBtn.classList.add("hidden");
+    inputDiv.classList.add("input-div");
     input.classList.add("new-project-input");
     submitBtn.classList.add("submit-btn");
     cancelBtn.classList.add("cancel-btn");
@@ -179,9 +185,10 @@ function openInput() {
     cancelBtn.addEventListener("click", updateSidebar);
     submitBtn.addEventListener("click", addProject);
 
-    projectList.appendChild(input);
-    projectList.appendChild(cancelBtn);
-    projectList.appendChild(submitBtn);
+    inputDiv.appendChild(input);
+    inputDiv.appendChild(cancelBtn);
+    inputDiv.appendChild(submitBtn);
+    projectList.appendChild(inputDiv);
 
     input.focus();
 }
