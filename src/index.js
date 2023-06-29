@@ -12,7 +12,7 @@ export function createProject(name) {
     switchProject(projects.length - 1);
 }
 
-function switchProject(index) {
+export function switchProject(index) {
     activeProject = index;
 }
     

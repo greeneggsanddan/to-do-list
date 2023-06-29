@@ -1,4 +1,4 @@
-import { addToProject, getProjects, getActiveProject, createProject} from ".";
+import { addToProject, getProjects, getActiveProject, createProject, switchProject } from ".";
 
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");
@@ -16,8 +16,8 @@ export function updateSidebar() {
 
     sidebarDiv.appendChild(sidebarTitle);
     
-    projects.forEach(project => {
-        const projectBtn = document.createElement("div");
+    projects.forEach((project, index) => {
+        const projectBtn = document.createElement("button");
         const dotDiv = document.createElement("div");
         const projectName = document.createElement("p");
 
@@ -26,6 +26,12 @@ export function updateSidebar() {
         projectName.classList.add("project-name");
 
         projectName.textContent = project.name;
+
+        projectBtn.addEventListener("click", () => {
+            switchProject(index);
+            updateProject();
+            updateSidebar();
+        });
 
         projectBtn.appendChild(dotDiv);
         projectBtn.appendChild(projectName);
