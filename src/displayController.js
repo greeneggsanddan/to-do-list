@@ -1,12 +1,21 @@
-import { addToProject } from ".";
+import { addToProject, getProjects } from ".";
 import { getActiveProject } from ".";
 
 const mainDiv = document.querySelector(".main");
+const sidebar = document.querySelector(".sidebar");
 
-export function displayProjectList(projects) {
+export function updateSidebar() {
+    sidebar.innerHTML = "";
+
     const sidebarDiv = document.createElement("div");
+    const sidebarTitle = document.createElement("h3");
+    const projects = getProjects();
 
     sidebarDiv.classList.add("project-list");
+    sidebarTitle.classList.add("sidebar-title");
+    sidebarTitle.textContent = "Projects";
+
+    sidebarDiv.appendChild(sidebarTitle);
     
     projects.forEach(project => {
         const projectBtn = document.createElement("div");
@@ -25,14 +34,13 @@ export function displayProjectList(projects) {
     });
 
     sidebarDiv.appendChild(createAddBtn("sidebar-btn", "New project"));
-
-    return sidebarDiv;
+    sidebar.appendChild(sidebarDiv);
 }
 
 export function updateProject() {
     mainDiv.innerHTML = "";
+    
     const project = getActiveProject();
-
     const projectContainer = document.createElement("div");
     const projectTitle = document.createElement("h2");
 

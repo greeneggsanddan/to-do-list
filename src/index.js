@@ -1,5 +1,5 @@
 import Project from "./project";
-import { displayProjectList, updateProject } from "./displayController";
+import { updateProject, updateSidebar } from "./displayController";
 
 const projects = [];
 let inbox = new Project("Inbox");
@@ -27,7 +27,9 @@ export function getActiveProject() {
     return projects[activeProject];
 }
 
-const sidebar = document.querySelector(".sidebar");
+export function getProjects() {
+    return projects;
+}
 
 addToProject("One");
 addToProject("Two");
@@ -37,5 +39,5 @@ switchProject(1);
 addToProject("Bacon");
 addToProject("Lettuce");
 addToProject("Tomatoes");
-sidebar.appendChild(displayProjectList(projects));
+updateSidebar();
 updateProject();
