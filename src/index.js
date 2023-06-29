@@ -20,7 +20,7 @@ export function addToProject(task) {
     projects[activeProject].addTask(task);
 }
 
-function removeFromProject(index) {
+export function removeFromProject(index) {
     projects[activeProject].removeTask(index);
 }
 

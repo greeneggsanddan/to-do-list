@@ -1,4 +1,4 @@
-import { addToProject, getProjects, getActiveProject, createProject, switchProject } from ".";
+import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject } from ".";
 
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");
@@ -67,18 +67,23 @@ function createTasks(project) {
 
     tasks.classList.add("tasks-container");
 
-    project.taskList.forEach(task => {
+    project.taskList.forEach((task, index) => {
         const taskDiv = document.createElement("div");
+        const checkboxBtn = document.createElement("button");
         const checkbox = document.createElement("div");
         const taskName = document.createElement("p");
 
         taskDiv.classList.add("task-div");
         checkbox.classList.add("checkbox");
         taskName.classList.add("task-name");
+        checkbox.dataset.index = index;
 
         taskName.textContent = task.name;
 
-        taskDiv.appendChild(checkbox);
+        checkboxBtn.addEventListener("click", deleteTask);
+        
+        checkboxBtn.appendChild(checkbox);
+        taskDiv.appendChild(checkboxBtn);
         taskDiv.appendChild(taskName);
         tasks.appendChild(taskDiv);
     });
@@ -88,6 +93,12 @@ function createTasks(project) {
     tasks.appendChild(addTaskBtn);
 
     return tasks;
+}
+
+function deleteTask(e) {
+    const index = e.target.dataset.index;
+    removeFromProject(index);
+    updateProject();
 }
 
 function createAddBtn(className, text) {
