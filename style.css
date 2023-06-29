@@ -88,7 +88,8 @@ body {
     font-weight: bold;
 }
 
-.sidebar-btn {
+.sidebar-btn,
+.new-project-btn {
     display: flex;
     gap: 8px;
     align-items: center;
@@ -160,14 +161,15 @@ body {
     width: 18px;
 }
 
-.add-task-form {
+.add-task-div {
     border: 1px solid rgb(230, 230, 230);
     padding: 16px;
     border-radius: 16px;
     margin-top: 12px;
 }
 
-.add-task-input {
+.add-task-input,
+.new-project-input {
     font-size: 1rem;
     padding: 4px;
     font-family: "Open Sans", sans-serif;
@@ -177,14 +179,21 @@ body {
     margin-bottom: 8px;
 }
 
-.add-task-input:focus {
+.new-project-input {
+    margin-top: 8px;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.add-task-input:focus,
+.new-project-input:focus {
     outline: none;
 }
 
 .cancel-btn,
 .submit-btn {
     color: white;
-    padding: 10px;
+    padding: 8px 10px;
     border-radius: 6px;
     font-size: .875rem;
 }
