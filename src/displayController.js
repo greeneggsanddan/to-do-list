@@ -1,6 +1,7 @@
 import { addToProject } from ".";
-import Task from "./task";
 import { getActiveProject } from ".";
+
+const mainDiv = document.querySelector(".main");
 
 export function displayProjectList(projects) {
     const sidebarDiv = document.createElement("div");
@@ -28,7 +29,10 @@ export function displayProjectList(projects) {
     return sidebarDiv;
 }
 
-export function displayProject(project) {
+export function updateProject() {
+    mainDiv.innerHTML = "";
+    const project = getActiveProject();
+
     const projectContainer = document.createElement("div");
     const projectTitle = document.createElement("h2");
 
@@ -36,11 +40,10 @@ export function displayProject(project) {
     projectTitle.classList.add("project-title");
 
     projectTitle.textContent = project.name;
-    
+
     projectContainer.appendChild(projectTitle);
     projectContainer.appendChild(createTasks(project));
-
-    return projectContainer;
+    mainDiv.appendChild(projectContainer);
 }
 
 function createTasks(project) {
@@ -121,6 +124,13 @@ export function createForm() {
     return addTaskForm;
 }
 
+function addTask(event) {
+    event.preventDefault();
+    const task = document.querySelector(".add-task-input").value;
+    addToProject(task);
+    updateProject();
+}
+
 function openForm() {
     const addTaskBtn = document.querySelector(".add-task-btn");
     const project = document.querySelector(".project-container");
@@ -130,19 +140,4 @@ function openForm() {
 
     const input = document.querySelector(".add-task-input");
     input.focus();
-}
-
-export function updateProjectDisplay() {
-    const mainDiv = document.querySelector(".main");
-    const project = getActiveProject();
-
-    mainDiv.innerHTML = "";
-    mainDiv.appendChild(displayProject(project));
-}
-
-function addTask(event) {
-    event.preventDefault();
-    const task = document.querySelector(".add-task-input").value;
-    addToProject(task);
-    updateProjectDisplay();
 }
