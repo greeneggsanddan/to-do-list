@@ -1,5 +1,4 @@
-import { addToProject, getProjects } from ".";
-import { getActiveProject } from ".";
+import { addToProject, getProjects, getActiveProject, createProject} from ".";
 
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");
@@ -33,15 +32,11 @@ export function updateSidebar() {
         sidebarDiv.appendChild(projectBtn);
     });
 
-    const newProjectBtn = createAddBtn("sidebar-btn", "New project");
-    newProjectBtn.addEventListener("click", addProject);
+    const newProjectBtn = createAddBtn("new-project-btn", "New project");
+    newProjectBtn.addEventListener("click", openInput);
 
     sidebarDiv.appendChild(newProjectBtn);
     sidebar.appendChild(sidebarDiv);
-}
-
-function addProject() {
-    
 }
 
 export function updateProject() {
@@ -89,7 +84,6 @@ function createTasks(project) {
     return tasks;
 }
 
-
 function createAddBtn(className, text) {
     const button = document.createElement("button");
     const addSymbol = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -109,13 +103,13 @@ function createAddBtn(className, text) {
     return button;
 }
 
-export function createForm() {
-    const addTaskForm = document.createElement("form");
+function createForm() {
+    const addTaskDiv = document.createElement("div");
     const input = document.createElement("input");
     const cancelBtn = document.createElement("button");
     const submitBtn = document.createElement("button");
 
-    addTaskForm.classList.add("add-task-form")
+    addTaskDiv.classList.add("add-task-div")
     input.classList.add("add-task-input");
     cancelBtn.classList.add("cancel-btn");
     submitBtn.classList.add("submit-btn");
@@ -127,21 +121,21 @@ export function createForm() {
     cancelBtn.textContent = "Cancel";
     submitBtn.textContent = "Add task";
 
-    input.addEventListener("keypress", e => {
-        if (e.key === "Enter") addTask(e);
+    input.addEventListener("keydown", e => {
+        if (e.key === "Enter") addTask();
+        if (e.key === "Escape") updateProject();
     });
-
+    cancelBtn.addEventListener("click", updateProject);
     submitBtn.addEventListener("click", addTask);
 
-    addTaskForm.appendChild(input);
-    addTaskForm.appendChild(cancelBtn);
-    addTaskForm.appendChild(submitBtn);
+    addTaskDiv.appendChild(input);
+    addTaskDiv.appendChild(cancelBtn);
+    addTaskDiv.appendChild(submitBtn);
 
-    return addTaskForm;
+    return addTaskDiv;
 }
 
-function addTask(event) {
-    event.preventDefault();
+function addTask() {
     const task = document.querySelector(".add-task-input").value;
     addToProject(task);
     updateProject();
@@ -156,4 +150,45 @@ function openForm() {
 
     const input = document.querySelector(".add-task-input");
     input.focus();
+}
+
+function openInput() {
+    const newProjectBtn = document.querySelector(".new-project-btn");
+    const projectList = document.querySelector(".project-list");
+    const input = document.createElement("input");
+    const submitBtn = document.createElement("button");
+    const cancelBtn = document.createElement("button");
+
+    newProjectBtn.classList.add("hidden");
+    input.classList.add("new-project-input");
+    submitBtn.classList.add("submit-btn");
+    cancelBtn.classList.add("cancel-btn");
+
+    input.setAttribute("type", "text");
+    input.setAttribute("maxlength", "20");
+    input.setAttribute("placeholder", "Project name...");
+    submitBtn.setAttribute("type", "button");
+
+    cancelBtn.textContent = "Cancel";
+    submitBtn.textContent = "Add project";
+
+    input.addEventListener("keydown", e => {
+        if (e.key === "Enter") addProject();
+        if (e.key === "Escape") updateSidebar();
+    });
+    cancelBtn.addEventListener("click", updateSidebar);
+    submitBtn.addEventListener("click", addProject);
+
+    projectList.appendChild(input);
+    projectList.appendChild(cancelBtn);
+    projectList.appendChild(submitBtn);
+
+    input.focus();
+}
+
+function addProject() {
+    const projectName = document.querySelector(".new-project-input").value;
+    createProject(projectName);
+    updateProject();
+    updateSidebar();
 }

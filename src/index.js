@@ -6,9 +6,10 @@ let inbox = new Project("Inbox");
 let activeProject = 0;
 projects.push(inbox);
 
-function createProject(name) {
+export function createProject(name) {
     const newProject = new Project(name);
     projects.push(newProject);
+    switchProject(projects.length - 1);
 }
 
 function switchProject(index) {
@@ -35,7 +36,6 @@ addToProject("One");
 addToProject("Two");
 addToProject("Three");
 createProject("Shopping list");
-switchProject(1);
 addToProject("Bacon");
 addToProject("Lettuce");
 addToProject("Tomatoes");
