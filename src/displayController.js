@@ -80,10 +80,10 @@ function createTasks(project) {
         spacer.classList.add("spacer");
         priority.classList.add("priority");
         taskDiv.dataset.index = index;
-        priority.dataset.priority = "0";
+        priority.dataset.priority = task.priority;
 
         taskName.textContent = task.name;
-        priority.textContent = "P"
+        priority.textContent = "P";
 
         checkbox.addEventListener("click", deleteTask);
         priority.addEventListener("click", changePriority);
@@ -127,20 +127,30 @@ function changePriority(e) {
     }
 }
 
+function createCalendar() {
+}
+
+function inputDate() {
+    const input = document.createElement("input");
+
+    input.type = "date";
+}
+
 function createAddBtn(className, text) {
     const button = document.createElement("button");
-    const addSymbol = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     const buttonText = document.createElement("p");
 
     button.classList.add(className);
+    svg.classList.add("plus");
     
-    addSymbol.setAttribute("viewBox", "4 4 16 16");
+    svg.setAttribute("viewBox", "4 4 16 16");
     path.setAttribute("d", "M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z");
     buttonText.textContent = text;
 
-    addSymbol.appendChild(path);
-    button.appendChild(addSymbol);
+    svg.appendChild(path);
+    button.appendChild(svg);
     button.appendChild(buttonText);
 
     return button;
@@ -149,18 +159,28 @@ function createAddBtn(className, text) {
 function createForm() {
     const addTaskDiv = document.createElement("div");
     const input = document.createElement("input");
+    const label = document.createElement("label");
+    const dateInput = document.createElement("input");
+    const buttonDiv = document.createElement("div");
     const cancelBtn = document.createElement("button");
     const submitBtn = document.createElement("button");
 
     addTaskDiv.classList.add("add-task-div")
     input.classList.add("add-task-input");
+    label.classList.add("form-label");
+    dateInput.classList.add("date-input");
+    buttonDiv.classList.add("button-div");
     cancelBtn.classList.add("cancel-btn");
     submitBtn.classList.add("submit-btn");
 
     input.setAttribute("type", "text");
     input.setAttribute("maxlength", "50");
     input.setAttribute("placeholder", "Task name...");
+    label.for = "due-date";
+    dateInput.type = "date";
+    dateInput.id = "due-date";
 
+    label.textContent = "Due date:"
     cancelBtn.textContent = "Cancel";
     submitBtn.textContent = "Add task";
 
@@ -171,9 +191,12 @@ function createForm() {
     cancelBtn.addEventListener("click", updateProject);
     submitBtn.addEventListener("click", addTask);
 
+    buttonDiv.appendChild(dateInput);
+    buttonDiv.appendChild(cancelBtn);
+    buttonDiv.appendChild(submitBtn);
     addTaskDiv.appendChild(input);
-    addTaskDiv.appendChild(cancelBtn);
-    addTaskDiv.appendChild(submitBtn);
+    addTaskDiv.appendChild(label);
+    addTaskDiv.appendChild(buttonDiv);
 
     return addTaskDiv;
 }
