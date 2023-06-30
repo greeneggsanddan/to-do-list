@@ -50,6 +50,10 @@ button {
     --header-accent: #FADCD9;
     --sidebar-color: #F9F1F0;
     --sidebar-accent: #F8AFA6;
+    --gray: lightgray;
+    --priority-one: #f08080;
+    --priority-two: #f8ad9d;
+    --priority-three: #ffdab9;
     font-size: 16px;
     font-family: "Open Sans", sans-serif;
 }
@@ -143,6 +147,47 @@ body {
     gap: 8px;
     padding: 12px 0;
     border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.task-div:hover {
+    /* background-color: var(--sidebar-color); */
+}
+
+.spacer {
+    flex: 1;
+}
+
+.priority {
+    display: flex;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    font-family: "Geologica", sans-serif;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: .875rem;
+    visibility: hidden;
+    background-color: var(--gray);
+}
+
+.task-div:hover .priority {
+    visibility: visible;
+}
+
+.priority[data-priority="1"] {
+    visibility: visible;
+    background-color: var(--priority-one);
+}
+
+.priority[data-priority="2"] {
+    visibility: visible;
+    background-color: var(--priority-two);
+}
+
+.priority[data-priority="3"] {
+    visibility: visible;
+    background-color: var(--priority-three);
 }
 
 .checkbox {
