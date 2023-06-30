@@ -1,4 +1,4 @@
-import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject, togglePriority } from ".";
+import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject, togglePriority } from "./projectController";
 
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");

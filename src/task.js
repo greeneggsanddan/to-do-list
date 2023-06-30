@@ -7,30 +7,6 @@ export default class Task {
         this.priority = priority;
     }
 
-    // get name() {
-    //     return this._name;
-    // }
-
-    // set name(newName) {
-    //     this._name = newName;
-    // }
-
-    // get priority() {
-    //     return this._priority;
-    // }
-
-    // set priority(value) {
-    //     this._priority = value;
-    // }
-
-    // get date() {
-    //     return this._dueDate;
-    // }
-
-    // set dueDate(date) {
-    //     this.dueDate = date;
-    // }
-
     changePriority() {
         return this.priority = this.priority === 3 ? 0 : ++this.priority;
     }
@@ -39,7 +15,6 @@ export default class Task {
         const date = convertDate(this.dueDate);
         return format(new Date(date), "PP");
     }
-
 }
 
 function convertDate(date) {    //Converts YYYY-MM-DD to YYYY, MM, DD and removes leading zeroes
