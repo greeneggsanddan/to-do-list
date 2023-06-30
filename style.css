@@ -50,7 +50,7 @@ button {
     --header-accent: #FADCD9;
     --sidebar-color: #F9F1F0;
     --sidebar-accent: #F8AFA6;
-    --gray: lightgray;
+    --gray: rgb(187, 187, 187);
     --priority-one: #f08080;
     --priority-two: #f8ad9d;
     --priority-three: #ffdab9;
@@ -114,7 +114,7 @@ body {
     border-radius: 50%;
 }
 
-.sidebar svg {
+.sidebar .plus {
     width: 10px;
 }
 
@@ -145,12 +145,8 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid rgb(230, 230, 230);
-}
-
-.task-div:hover {
-    /* background-color: var(--sidebar-color); */
 }
 
 .spacer {
@@ -171,7 +167,8 @@ body {
     background-color: var(--gray);
 }
 
-.task-div:hover .priority {
+.task-div:hover .priority,
+.task-div:hover .date-input {
     visibility: visible;
 }
 
@@ -219,7 +216,7 @@ body {
     display: none;
 }
 
-.main svg {
+.main .plus {
     width: 18px;
 }
 
@@ -228,6 +225,33 @@ body {
     padding: 16px;
     border-radius: 16px;
     margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-label {
+    font-size: .75rem;
+    margin-left: 4px;
+}
+
+.date-input {
+    font-family: "Open Sans", sans-serif;
+    padding: 4px;
+    width: min-content;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 0 0 1px var(--gray);
+}
+
+.date-input:focus {
+    outline: none;
+}
+
+.button-div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .add-task-input,
@@ -267,5 +291,8 @@ body {
 
 .submit-btn {
     background-color: var(--header-color);
+}
+
+.sidebar .submit-btn {
     margin-left: 8px;
 }
