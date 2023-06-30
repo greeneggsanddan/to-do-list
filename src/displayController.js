@@ -85,7 +85,7 @@ function createTasks(project) {
         priority.dataset.priority = task.priority;
 
         taskName.textContent = task.name;
-        dueDate.textContent = task.dueDate;
+        if (task.dueDate != "") dueDate.textContent = task.formatDate();
         priority.textContent = "P";
 
         checkbox.addEventListener("click", deleteTask);

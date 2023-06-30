@@ -1,3 +1,5 @@
+import format from "date-fns/format";
+
 export default class Task {
     constructor(name, dueDate = "") {
         this.name = name;
@@ -34,5 +36,8 @@ export default class Task {
         return this.priority = this.priority === 3 ? 0 : ++this.priority;
     }
 
+    formatDate() {
+        return format(new Date(this.dueDate), "PP");
+    }
 
 }

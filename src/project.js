@@ -1,4 +1,5 @@
 import Task from "./task";
+import format from "date-fns/format";
 
 export default class Project {
     constructor(name) {

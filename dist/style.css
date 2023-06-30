@@ -156,7 +156,7 @@ body {
 .due-date {
     border: 1px solid var(--header-color);
     color: var(--header-color);
-    padding: 4px;
+    padding: 4px 6px;
     font-size: .75rem;
     border-radius: 6px;
     font-weight: 700;
