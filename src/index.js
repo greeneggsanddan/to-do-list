@@ -1,5 +1,6 @@
 import Project from "./project";
 import { updateProject, updateSidebar } from "./displayController";
+import format from "date-fns/format";
 
 const projects = [];
 let inbox = new Project("Inbox");
@@ -16,8 +17,8 @@ export function switchProject(index) {
     activeProject = index;
 }
     
-export function addToProject(task) {
-    projects[activeProject].addTask(task);
+export function addToProject(task, date) {
+    projects[activeProject].addTask(task, date);
 }
 
 export function removeFromProject(index) {

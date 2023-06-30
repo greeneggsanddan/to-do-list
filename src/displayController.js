@@ -72,17 +72,20 @@ function createTasks(project) {
         const checkbox = document.createElement("button");
         const taskName = document.createElement("p");
         const spacer = document.createElement("div");
+        const dueDate = document.createElement("div");
         const priority = document.createElement("button");
 
         taskDiv.classList.add("task-div");
         checkbox.classList.add("checkbox");
         taskName.classList.add("task-name");
         spacer.classList.add("spacer");
+        dueDate.classList.add("due-date");
         priority.classList.add("priority");
         taskDiv.dataset.index = index;
         priority.dataset.priority = task.priority;
 
         taskName.textContent = task.name;
+        dueDate.textContent = task.dueDate;
         priority.textContent = "P";
 
         checkbox.addEventListener("click", deleteTask);
@@ -91,6 +94,7 @@ function createTasks(project) {
         taskDiv.appendChild(checkbox);
         taskDiv.appendChild(taskName);
         taskDiv.appendChild(spacer);
+        if (task.dueDate != "") taskDiv.appendChild(dueDate);
         taskDiv.appendChild(priority);
         tasks.appendChild(taskDiv);
     });
@@ -125,15 +129,6 @@ function changePriority(e) {
         default:
             e.target.dataset.priority = "0";
     }
-}
-
-function createCalendar() {
-}
-
-function inputDate() {
-    const input = document.createElement("input");
-
-    input.type = "date";
 }
 
 function createAddBtn(className, text) {
@@ -203,7 +198,9 @@ function createForm() {
 
 function addTask() {
     const task = document.querySelector(".add-task-input").value;
-    addToProject(task);
+    const dueDate = document.querySelector(".date-input").value;
+    if (task == "") return;
+    addToProject(task, dueDate);
     updateProject();
 }
 
