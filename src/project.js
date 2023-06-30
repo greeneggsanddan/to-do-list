@@ -16,8 +16,8 @@ export default class Project {
     // }
 
 
-    addTask(task, date) {
-        const newTask = new Task(task, date);
+    addTask(task, date, priority) {
+        const newTask = new Task(task, date, priority);
         this.taskList.push(newTask);
     }
 

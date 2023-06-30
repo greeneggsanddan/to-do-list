@@ -199,6 +199,7 @@ function createForm() {
 function addTask() {
     const task = document.querySelector(".add-task-input").value;
     const dueDate = document.querySelector(".date-input").value;
+    console.log(dueDate);
     if (task == "") return;
     addToProject(task, dueDate);
     updateProject();

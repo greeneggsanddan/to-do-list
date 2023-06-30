@@ -17,8 +17,8 @@ export function switchProject(index) {
     activeProject = index;
 }
     
-export function addToProject(task, date) {
-    projects[activeProject].addTask(task, date);
+export function addToProject(task, date, priority) {
+    projects[activeProject].addTask(task, date, priority);
 }
 
 export function removeFromProject(index) {
@@ -37,12 +37,14 @@ export function getProjects() {
     return projects;
 }
 
-addToProject("One");
-addToProject("Two");
-addToProject("Three");
+addToProject("Walk the dog");
+addToProject("Pick up dry-cleaning", "", 1);
+addToProject("Cook dinner");
+addToProject("Sign-up for swimming lessons", "2023-07-31")
 createProject("Shopping list");
 addToProject("Bacon");
 addToProject("Lettuce");
 addToProject("Tomatoes");
+switchProject(0);
 updateSidebar();
 updateProject();
