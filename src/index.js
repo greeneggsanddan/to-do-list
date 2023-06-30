@@ -24,6 +24,10 @@ export function removeFromProject(index) {
     projects[activeProject].removeTask(index);
 }
 
+export function togglePriority(index) {
+    return projects[activeProject].taskList[index].changePriority();
+}
+
 export function getActiveProject() {
     return projects[activeProject];
 }

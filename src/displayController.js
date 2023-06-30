@@ -1,4 +1,4 @@
-import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject } from ".";
+import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject, togglePriority } from ".";
 
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");
@@ -69,22 +69,29 @@ function createTasks(project) {
 
     project.taskList.forEach((task, index) => {
         const taskDiv = document.createElement("div");
-        const checkboxBtn = document.createElement("button");
-        const checkbox = document.createElement("div");
+        const checkbox = document.createElement("button");
         const taskName = document.createElement("p");
+        const spacer = document.createElement("div");
+        const priority = document.createElement("button");
 
         taskDiv.classList.add("task-div");
         checkbox.classList.add("checkbox");
         taskName.classList.add("task-name");
-        checkbox.dataset.index = index;
+        spacer.classList.add("spacer");
+        priority.classList.add("priority");
+        taskDiv.dataset.index = index;
+        priority.dataset.priority = "0";
 
         taskName.textContent = task.name;
+        priority.textContent = "P"
 
-        checkboxBtn.addEventListener("click", deleteTask);
-        
-        checkboxBtn.appendChild(checkbox);
-        taskDiv.appendChild(checkboxBtn);
+        checkbox.addEventListener("click", deleteTask);
+        priority.addEventListener("click", changePriority);
+
+        taskDiv.appendChild(checkbox);
         taskDiv.appendChild(taskName);
+        taskDiv.appendChild(spacer);
+        taskDiv.appendChild(priority);
         tasks.appendChild(taskDiv);
     });
 
@@ -96,9 +103,28 @@ function createTasks(project) {
 }
 
 function deleteTask(e) {
-    const index = e.target.dataset.index;
+    const index = e.target.closest("div").dataset.index;
     removeFromProject(index);
     updateProject();
+}
+
+function changePriority(e) {
+    const index = e.target.closest("div").dataset.index;
+    const priority = togglePriority(index);
+
+    switch(priority) {
+        case 1:
+            e.target.dataset.priority = "1";
+            break;
+        case 2:
+            e.target.dataset.priority = "2";
+            break;
+        case 3:
+            e.target.dataset.priority = "3";
+            break;
+        default:
+            e.target.dataset.priority = "0";
+    }
 }
 
 function createAddBtn(className, text) {
