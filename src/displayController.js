@@ -1,4 +1,4 @@
-import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject, togglePriority } from "./projectController";
+import { addToProject, getProjects, getActiveProject, createProject, switchProject, removeFromProject, togglePriority, removeProject, getActiveIndex } from "./projectController";
 
 const mainDiv = document.querySelector(".main");
 const sidebar = document.querySelector(".sidebar");
@@ -17,13 +17,17 @@ export function updateSidebar() {
     sidebarDiv.appendChild(sidebarTitle);
     
     projects.forEach((project, index) => {
+        const projectTab = document.createElement("div");
         const projectBtn = document.createElement("button");
         const dotDiv = document.createElement("div");
         const projectName = document.createElement("p");
+        const spacer = document.createElement("div");
 
+        projectTab.classList.add("project-tab");
         projectBtn.classList.add("sidebar-btn");
         dotDiv.classList.add("dot");
         projectName.classList.add("project-name");
+        spacer.classList.add("spacer");
 
         projectName.textContent = project.name;
 
@@ -35,7 +39,10 @@ export function updateSidebar() {
 
         projectBtn.appendChild(dotDiv);
         projectBtn.appendChild(projectName);
-        sidebarDiv.appendChild(projectBtn);
+        projectBtn.appendChild(spacer);
+        projectTab.appendChild(projectBtn);
+        if (index !=0) projectTab.appendChild(createDeleteProjectBtn(index));
+        sidebarDiv.appendChild(projectTab);
     });
 
     const newProjectBtn = createAddBtn("new-project-btn", "New project");
@@ -43,6 +50,40 @@ export function updateSidebar() {
 
     sidebarDiv.appendChild(newProjectBtn);
     sidebar.appendChild(sidebarDiv);
+}
+
+function createDeleteProjectBtn(index) {
+    const button = document.createElement("button");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    button.classList.add("delete-project");
+    svg.classList.add("x-symbol");
+    button.dataset.index = index;
+    
+    svg.setAttribute("viewBox", "0 -960 960 960");
+    path.setAttribute("d", "m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z");
+
+    svg.appendChild(path);
+    button.appendChild(svg);
+
+    button.addEventListener("click", deleteProject);
+
+    return button;
+}
+
+function deleteProject(e) {
+    const index = e.target.closest("button").dataset.index;
+    const activeIndex = getActiveIndex();
+    removeProject(index);
+    console.log(index);
+    if (activeIndex > index) {
+        switchProject(activeIndex - 1);
+    } else if (activeIndex == index) {
+        switchProject(0);
+    }
+    updateSidebar();
+    updateProject()
 }
 
 export function updateProject() {
@@ -205,7 +246,7 @@ function addTask() {
 }
 
 function openForm() {
-    updateSidebar();
+    updateSidebar();    //closes the "New Project" input
 
     const addTaskBtn = document.querySelector(".add-task-btn");
     const project = document.querySelector(".project-container");
@@ -218,7 +259,7 @@ function openForm() {
 }
 
 function openInput() {
-    updateProject();
+    updateProject();    //closes the "Add Task" input;
 
     const newProjectBtn = document.querySelector(".new-project-btn");
     const projectList = document.querySelector(".project-list");

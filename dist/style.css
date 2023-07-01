@@ -92,7 +92,26 @@ body {
     font-weight: bold;
 }
 
-.sidebar-btn,
+.project-tab {
+    display: flex;
+    align-items: center;
+    padding: 6px 4px;
+    border-radius: 6px;
+}
+
+.sidebar-btn {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    align-items: center;
+}
+
+.delete-project {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .new-project-btn {
     display: flex;
     gap: 8px;
@@ -102,7 +121,7 @@ body {
     border-radius: 6px;
 }
 
-.sidebar-btn:hover,
+.project-tab:hover,
 .new-project-btn:hover {
     background-color: var(--header-accent);
 }
@@ -116,6 +135,10 @@ body {
 
 .sidebar .plus {
     width: 10px;
+}
+
+.delete-project {
+    width: 18px;
 }
 
 .main {
@@ -214,6 +237,7 @@ body {
     padding: 12px 0;
     margin-left: 1.5px;
     border-radius: 6px;
+    width: fit-content;
 }
 
 .add-task-btn:hover {

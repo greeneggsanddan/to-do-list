@@ -13,6 +13,13 @@ export function createProject(name) {
     saveData();
 }
 
+export function removeProject(index) {
+    if (index != 0) {
+        projects.splice(index, 1);
+        saveData();
+    }
+}
+
 export function switchProject(index) {
     activeProject = index;
 }
@@ -35,6 +42,10 @@ export function togglePriority(index) {
 
 export function getActiveProject() {
     return projects[activeProject];
+}
+
+export function getActiveIndex() {
+    return activeProject;
 }
 
 export function getProjects() {
