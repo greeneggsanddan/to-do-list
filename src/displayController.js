@@ -299,6 +299,7 @@ function openInput() {
 
 function addProject() {
     const projectName = document.querySelector(".new-project-input").value;
+    if (projectName == "") return;
     createProject(projectName);
     updateProject();
     updateSidebar();

@@ -50,6 +50,7 @@ button {
     --header-accent: #FADCD9;
     --sidebar-color: #F9F1F0;
     --sidebar-accent: #F8AFA6;
+    --red-hover-color: #d88279;
     --gray: rgb(187, 187, 187);
     --priority-one: #f08080;
     --priority-two: #f8ad9d;
@@ -110,6 +111,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 24px;
+    visibility: hidden;
+}
+
+
+.x-symbol {
+    fill: var(--header-color);
+}
+
+.delete-project:hover .x-symbol {
+    fill: var(--red-hover-color);
+}
+
+.project-tab:hover .delete-project{
+    visibility: visible;
 }
 
 .new-project-btn {
@@ -135,10 +151,6 @@ body {
 
 .sidebar .plus {
     width: 10px;
-}
-
-.delete-project {
-    width: 18px;
 }
 
 .main {
@@ -331,7 +343,7 @@ body {
 }
 
 .submit-btn:hover {
-    background-color: #d88279;
+    background-color: var(--red-hover-color);
 }
 
 .sidebar .submit-btn {
