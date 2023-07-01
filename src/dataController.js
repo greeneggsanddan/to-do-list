@@ -1,3 +1,7 @@
+import { getProjects } from "./projectController";
+import Project from "./project";
+import Task from "./task";
+
 export function storageAvailable(type) {
     let storage;
     try {
@@ -25,6 +29,24 @@ export function storageAvailable(type) {
     }
 }
 
-function populateStorage() {
-
+export function saveData() {
+    localStorage.setItem("projects", JSON.stringify(getProjects()));
 }
+
+export function loadData() {
+    const projects = JSON.parse(localStorage.getItem("projects"));
+    const savedProjects = []
+    projects.forEach(project => {
+        const taskList = project.taskList;
+        const newTaskList = [];
+        taskList.forEach(task => {
+            const newTask = new Task(task.name, task.dueDate, task.priority);
+            newTaskList.push(newTask);
+        });
+        const newProject = new Project(project.name, newTaskList);
+        savedProjects.push(newProject);
+    });
+
+    return savedProjects;
+}
+

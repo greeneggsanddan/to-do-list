@@ -1,9 +1,9 @@
 import Task from "./task";
 
 export default class Project {
-    constructor(name) {
+    constructor(name, taskList = []) {
         this.name = name;
-        this.taskList = [];
+        this.taskList = taskList;
     }
 
     addTask(task, date, priority) {
